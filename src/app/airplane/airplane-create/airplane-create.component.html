@@ -1,0 +1,48 @@
+<div class="container">
+
+  
+
+    <div class="alert alert-danger" *ngIf="createErrorMessage">
+        {{ createErrorMessage }}
+      </div>
+
+      <form [formGroup]="airplaneForm" (ngSubmit)="submit()" autocomplete="off">
+
+        <div class="form-group align">
+          
+          <input type="text" id="model" class="form-control valid" formControlName="model" [ngClass]="checkValidationField('model')">
+          <label class="animated-label">Modelo</label>
+
+          <div class="invalid-feedback" *ngIf="airplaneForm.get('model').errors">
+            <!-- Complemento é obrigatório -->
+            {{ generateErrorMessage('model') }}
+          </div>
+        </div>
+
+        <div class="form-group align">
+          
+          <input type="number" id="capacity" class="form-control valid" formControlName="capacity" [ngClass]="checkValidationField('capacity')">
+          <label class="animated-label">Capacidade</label>
+
+          <div class="invalid-feedback" *ngIf="airplaneForm.get('capacity').errors">
+            {{ generateErrorMessage('capacity') }}
+          </div>
+        </div>
+
+        <div class="form-group align">
+          
+            <input  type="date" id="createdAt" class="form-control valid" formControlName="createdAt" [ngClass]="checkValidationField('createdAt')">
+            <label class="animated-label">Data de criação</label>
+  
+            <div class="invalid-feedback" *ngIf="airplaneForm.get('createdAt').errors">
+              {{ generateErrorMessage('createdAt') }}
+            </div>
+          </div>
+       
+
+        <div class="btn-wrapper">
+          <button type="submit" class="btn btn-green">Cadastrar</button>
+        </div>
+      </form>
+  
+  </div>
