@@ -112,7 +112,12 @@ export class AirplaneCreateComponent implements OnInit {
         console.log(result);
       })
 
+    }else{
+      debugger
     }
+
+
+
   }
 
 
