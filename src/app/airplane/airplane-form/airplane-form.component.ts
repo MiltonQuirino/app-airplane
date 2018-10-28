@@ -15,13 +15,19 @@ export class AirplaneFormComponent implements OnInit {
   public airplaneForm: FormGroup;
   private showInvalidFields = false;
   public createErrorMessage = '';
+  public type = '';
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
 
     this.createForm();
+    this.setTypeForm();
     // this.airplaneForm.setValue(this.plane);
+  }
+
+  public setTypeForm() {
+    this.type = this.formType === 'edit-form' ? 'Editar' : 'Cadastrar';
   }
 
   public checkValidationField(fieldName) {
