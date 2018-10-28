@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Plane } from 'src/app/interfaces/plane';
 
 @Component({
   selector: 'app-airplane-form',
@@ -21,13 +22,9 @@ export class AirplaneFormComponent implements OnInit {
 
   ngOnInit() {
 
+    this.normalize();
     this.createForm();
     this.setTypeForm();
-    // this.airplaneForm.setValue(this.plane);
-  }
-
-  public setTypeForm() {
-    this.type = this.formType === 'edit-form' ? 'Editar' : 'Cadastrar';
   }
 
   public checkValidationField(fieldName) {
@@ -42,17 +39,18 @@ export class AirplaneFormComponent implements OnInit {
         this.plane.id
       ],
       model: [
-        this.plane.model, Validators.compose([
+        this.plane.model || '', Validators.compose([
           Validators.required
         ])
       ],
       capacity: [
-        this.plane.capacity, Validators.compose([
+        this.plane.capacity || '', Validators.compose([
           Validators.required,
           Validators.minLength(1)
         ])
       ],
       createdAt: [
+        // this.plane.createdAt || '', Validators.compose([
         this.plane.createdAt, Validators.compose([
           Validators.required,
           Validators.minLength(1)
@@ -60,8 +58,6 @@ export class AirplaneFormComponent implements OnInit {
       ]
     });
   }
-
-
 
   private isFieldInvalid(fieldName) {
     const field = this.airplaneForm.get(fieldName);
@@ -107,6 +103,19 @@ export class AirplaneFormComponent implements OnInit {
     }
   }
 
+  private normalize() {
+
+    if (!this.plane) {
+      this.plane = { id: 0, model: null, createdAt: null, capacity: null };
+    } else {
+      this.plane.createdAt = this.plane.createdAt.split('T')[0];
+    }
+  }
+
+  public setTypeForm() {
+    this.type = this.formType === 'edit-form' ? 'Editar' : 'Cadastrar';
+  }
+
   submit() {
 
     let plane;
@@ -118,10 +127,8 @@ export class AirplaneFormComponent implements OnInit {
       this.changePlane.emit(plane);
 
     } else {
-      debugger
+      this.createErrorMessage = 'Preencha todos os campos corretamente.'
     }
-
-
 
   }
 
