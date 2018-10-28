@@ -14,6 +14,8 @@ import { FooterComponent } from './footer/footer.component';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/pt';
 import { AirplaneDeleteComponent } from './airplane/airplane-delete/airplane-delete.component';
+import { AirplaneEditComponent } from './airplane/airplane-edit/airplane-edit.component';
+import { AirplaneFormComponent } from './airplane/airplane-form/airplane-form.component';
 
 registerLocaleData(localeFr, 'pt');
 
@@ -24,7 +26,9 @@ registerLocaleData(localeFr, 'pt');
     AirplaneCreateComponent,
     HeaderComponent,
     FooterComponent,
-    AirplaneDeleteComponent
+    AirplaneDeleteComponent,
+    AirplaneEditComponent,
+    AirplaneFormComponent
   ],
   imports: [
     BrowserModule,

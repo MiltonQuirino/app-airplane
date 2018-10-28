@@ -6,3 +6,19 @@ body{
 .back{
     margin: 10px;
 }
+
+.title {
+    padding: 26px;
+    text-align: center;
+    padding-top: 4px;
+}
+
+
+@media (max-width: 600px) 
+{
+    .table-list{
+        font-size: 11px;
+    }
+}
+
+

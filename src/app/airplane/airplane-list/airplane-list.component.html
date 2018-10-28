@@ -1,14 +1,14 @@
-
-
 <div class="table-responsive center">
-       
-    <table class="table table-striped table-hover" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5">
+
+    <h1 class="display-4 title">Lista de Aeronaves</h1>
+    
+    <table class="table table-striped table-hover table-list"  [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5">
         <thead>
             <tr>
                 <th>
                     <mfDefaultSorter by="id">Codigo</mfDefaultSorter>
                 </th>
-                <th >
+                <th>
                     <mfDefaultSorter by="model">Modelo</mfDefaultSorter>
                 </th>
                 <th>
@@ -26,12 +26,13 @@
                 <td class="text-right">{{airplane.createdAt| date:'shortDate'}}</td>
                 <td>{{airplane.capacity}}</td>
                 <td>
-                    <!-- <button class="btn btn-outline-warning">Editar</button> -->
-                    <img alt="Editar" src="assets/icon/edit.png">
-                    <!-- <a [routerLink]="['user', idVariable]">Link </a> -->
-                    <img [routerLink]="['/airplane/delete', airplane.id]"  alt="Excluir" src="assets/icon/rubbish-bin.png">
-                    <!-- <button class="btn btn-outline-danger" (click)="delete(airplane)">Excluir</button></td> -->
-                <!-- <td></td> -->
+                        <img [routerLink]="['/airplane/edit', airplane.id]" alt="Editar" src="assets/icon/edit.png">
+                </td>
+                <td>
+                        <img [routerLink]="['/airplane/delete', airplane.id]" alt="Excluir" src="assets/icon/rubbish-bin.png">
+                </td>
+                   
+                    
             </tr>
         </tbody>
         <tfoot>
@@ -45,12 +46,12 @@
 
     <div class="">
 
-            <a [routerLink]="'/airplane/create'">
-        
-                <span class="icon-arrow"></span> <button class="btn btn-success">Cadastrar</button>
-            </a>
-        
-        
-        </div>
+        <a [routerLink]="'/airplane/create'">
+
+            <span class="icon-arrow"></span> <button class="btn btn-success">Cadastrar</button>
+        </a>
+
+
+    </div>
 
 </div>

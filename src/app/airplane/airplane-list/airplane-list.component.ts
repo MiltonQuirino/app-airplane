@@ -24,13 +24,6 @@ export class AirplaneListComponent implements OnInit {
     });
     
   }
-   
-  delete(data){
-    this.airplaneService.delete(data.id).subscribe(result => {
-      this.getList();
-    })
-    console.log(data);
-  }
 
   
 

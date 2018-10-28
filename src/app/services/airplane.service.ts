@@ -8,6 +8,7 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class AirplaneService {
+  
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -39,6 +40,10 @@ export class AirplaneService {
       map(this.extractData));
   }
 
+  update(plane: any): any {
+    return this.http.put(`${environment.host}/api/plane/update`, plane).pipe(
+      map(this.extractData));
+  }
 
 
   // getPlanes() {
