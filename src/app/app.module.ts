@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/pt';
+import { AirplaneDeleteComponent } from './airplane/airplane-delete/airplane-delete.component';
 
 registerLocaleData(localeFr, 'pt');
 
@@ -22,7 +23,8 @@ registerLocaleData(localeFr, 'pt');
     AirplaneListComponent,
     AirplaneCreateComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AirplaneDeleteComponent
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,12 @@ export class AirplaneService {
 
   constructor(private http: HttpClient) { }
 
+  getPlane(id): Observable<any> {
+    return this.http.get(`${environment.host}/api/plane/get/${id}`).pipe(
+      map(this.extractData));
+  }
+
+
   getPlanes(): Observable<any> {
     return this.http.get(`${environment.host}/api/plane/get`).pipe(
       map(this.extractData));
