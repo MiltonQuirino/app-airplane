@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AirplaneService } from 'src/app/services/airplane.service';
+import { Plane } from 'src/app/interfaces/plane';
 
 @Component({
   selector: 'app-airplane-edit',
@@ -11,7 +12,7 @@ export class AirplaneEditComponent implements OnInit {
 
   private sub: any;
   public id: Number;
-  public plane: any;
+  public plane: Plane;
 
   constructor(private route: ActivatedRoute, private airplaneService: AirplaneService, private router: Router) { }
 
@@ -27,12 +28,11 @@ export class AirplaneEditComponent implements OnInit {
   }
 
   changePlane(plane){
-    this.airplaneService.update(plane).subscribe(result=>{
-      console.log(result);
+
+    this.airplaneService.update(plane).subscribe( (result: Plane) =>{
       this.router.navigate(['/']);
     })
-    console.log(plane);
-
+    
   }
 
 }

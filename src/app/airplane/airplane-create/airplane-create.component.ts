@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TouchSequence } from 'selenium-webdriver';
 import { AirplaneService } from 'src/app/services/airplane.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Plane } from 'src/app/interfaces/plane';
 
 @Component({
   selector: 'app-airplane-create',
@@ -17,13 +18,17 @@ export class AirplaneCreateComponent implements OnInit {
   private showInvalidFields = false;
   private sub: any;
 
-  constructor(private formBuilder: FormBuilder, private airplaneService: AirplaneService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private airplaneService: AirplaneService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
 
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
-   });
+    });
 
     this.createForm();
 
@@ -103,13 +108,9 @@ export class AirplaneCreateComponent implements OnInit {
     }
   }
 
-
-  /**
-   * Valida o form e envia
-   */
   submit() {
 
-    let plane;
+    let plane: Plane;
     this.createErrorMessage = '';
 
     if (this.airplaneForm.valid) {
@@ -121,7 +122,7 @@ export class AirplaneCreateComponent implements OnInit {
         this.router.navigate(['/']);
       })
 
-    }else{
+    } else {
       debugger
     }
 

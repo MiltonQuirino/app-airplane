@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { map, filter, catchError, mergeMap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { Plane } from '../interfaces/plane';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,8 @@ export class AirplaneService {
 
   getPlanes(): Observable<any> {
     return this.http.get(`${environment.host}/api/plane/get`).pipe(
-      map(this.extractData));
+      map(this.extractData) 
+      );
   }
 
   delete(id): Observable<any> {
@@ -35,39 +37,17 @@ export class AirplaneService {
   }
 
 
-  create(plane): Observable<any> {
+  create(plane:Plane): Observable<any> {
     return this.http.post(`${environment.host}/api/plane/create`, plane).pipe(
       map(this.extractData));
   }
 
-  update(plane: any): any {
+  update(plane: Plane): any {
     return this.http.put(`${environment.host}/api/plane/update`, plane).pipe(
       map(this.extractData));
   }
 
-
-  // getPlanes() {
-
-  //   return this.http.get<any>(`${environment.host}/api/plane/get`).subscribe(
-  //     data => {
-  //       console.log(data);
-  //       return data;
-  //     },
-  //     error => {
-  //       console.error("Error getPlanes");
-  //       return throwError(error);  // Angular 6/RxJS 6
-  //     }
-  //   );
-  // }
-
-  // try {
-  //   source$.subscribe(nextFn, undefined, completeFn);
-  // } catch (err) {
-  //   handleError(err);
-  // }
-
   private extractData(res: Response) {
-    console.log(res);
     let body = res;
     return body || {};
   }

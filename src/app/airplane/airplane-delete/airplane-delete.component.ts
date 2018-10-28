@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AirplaneService } from 'src/app/services/airplane.service';
+import { Plane } from 'src/app/interfaces/plane';
 
 @Component({
   selector: 'app-airplane-delete',
@@ -13,13 +14,16 @@ export class AirplaneDeleteComponent implements OnInit {
   public id: Number;
   public plane: any;
 
-  constructor(private route: ActivatedRoute, private airplaneService: AirplaneService, private router: Router) { }
+  constructor(
+    private route: ActivatedRoute,
+    private airplaneService: AirplaneService,
+    private router: Router) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
 
-      this.airplaneService.getPlane(this.id).subscribe(result => {
+      this.airplaneService.getPlane(this.id).subscribe((result: Plane) => {
         this.plane = result;
       });
 
@@ -27,14 +31,10 @@ export class AirplaneDeleteComponent implements OnInit {
 
   }
 
-     
-  delete(){
+  delete() {
     this.airplaneService.delete(this.id).subscribe(result => {
-      console.log(result);  
       this.router.navigate(['/']);
     })
-   
   }
-
 
 }

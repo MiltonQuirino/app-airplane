@@ -4,7 +4,7 @@
     <p>Codigo : {{id}}</p>
     <p>Modelo : {{plane.model}}</p>
     <p>Capacidade : {{plane.capacity}}</p>
-    <p>Data de criação : {{plane.createdAt}}</p>  
+    <p>Data de criação : {{plane.createdAt | date:'shortDate'}}</p>  
 </div>
 
 <button (click)="delete()" class="btn btn-outline-success">Excluir</button>

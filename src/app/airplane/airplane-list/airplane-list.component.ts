@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AirplaneService } from 'src/app/services/airplane.service';
+import { Plane } from 'src/app/interfaces/plane';
 
 @Component({
   selector: 'app-airplane-list',
@@ -8,23 +9,18 @@ import { AirplaneService } from 'src/app/services/airplane.service';
 })
 export class AirplaneListComponent implements OnInit {
 
-  public data : any
+  public data : Plane[];
 
   constructor(private airplaneService: AirplaneService) { }
 
-
   ngOnInit() {
-
     this.getList();
   }
 
   private getList(){
-    this.airplaneService.getPlanes().subscribe( result =>{
+    this.airplaneService.getPlanes().subscribe( (result: Plane[]) =>{
       this.data = result
-    });
-    
+    });    
   }
-
-  
 
 }
